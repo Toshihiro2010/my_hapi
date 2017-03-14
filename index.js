@@ -24,12 +24,23 @@ server.route({
     }
 });
 
+
 server.route({
     method : 'GET' , 
     path : '/users/{id}',
     handler : function(req , res){
         var id = req.params.id;
         res(users.findById(id));
+    }
+});
+
+server.route({
+    method : 'GET' , 
+    path : '/users/{id}/{username}',
+    handler : function(req , res){
+        var id = req.params.id;
+        var username = req.params.username;
+        res(users.findById2(id,username));
     }
 });
 
