@@ -31,7 +31,8 @@ server.route({
     path : '/users/{id}',
     config:{
         response:{
-            emptyStatusCode:204, 
+            emptyStatusCode:204,
+            
         },
         handler : function(req , res){
             var id = req.params.id;
