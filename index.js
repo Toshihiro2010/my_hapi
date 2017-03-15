@@ -8,6 +8,7 @@ server.connection({
     port : 30
 });
 
+
 server.route({
     method : 'GET',
     path : '/',
@@ -28,9 +29,17 @@ server.route({
 server.route({
     method : 'GET' , 
     path : '/users/{id}',
-    handler : function(req , res){
-        var id = req.params.id;
-        res(users.findById(id));
+    config:{
+        response:{
+            emptyStatusCode:204, 
+        },
+        handler : function(req , res){
+            var id = req.params.id;
+            //res(users.findById(id));
+            var result = users.findById(id);
+            res(result);
+            //console.log(res(result));
+        }
     }
 });
 

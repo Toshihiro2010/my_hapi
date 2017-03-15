@@ -30,10 +30,12 @@ var users = [
     "position": "The 4 Emperors"
 }
 ]
-
 var strMessage = {
 "statusCode": 404,
 "error": "Not Found"
+};
+exports.errorStatus = function(){
+    strMessage;
 };
 
 /* ฟังก์ชันสำหรับหา user ทั้งหมดในระบบ ในส่วนนี้ผมจะให้ส่งค่า user ทั้งหมดกลับไปเลย*/
@@ -55,8 +57,6 @@ exports.findById2 = function (id,username) {
     for (var i = 0; i < users.length; i++) {
         if (users[i].id == id && users[i].username == username) {
             return users[i];
-        }else {
-            return strMessage;
         }
     }
 };
