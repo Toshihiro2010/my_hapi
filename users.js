@@ -59,6 +59,7 @@ exports.findById2 = function (id,username) {
             return users[i];
         }
     }
+    return null;
 };
 
 

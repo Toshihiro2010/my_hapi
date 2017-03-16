@@ -1,5 +1,7 @@
 var Hapi = require('hapi');
 var users = require('./users');
+var mysql = require("mysql");
+var myFuction = require("./myFunction/myFunction");
 
 var server = new Hapi.Server();
 
@@ -47,10 +49,43 @@ server.route({
 server.route({
     method : 'GET' , 
     path : '/users/{id}/{username}',
+    config : {
+        response :{
+            emptyStatusCode : 204,
+        },
+        handler : function(req , res){
+            var id = req.params.id;
+            var username = req.params.username;
+            res(users.findById2(id,username));
+        }
+    }
+});
+
+server.route({
+    method : 'GET',
+    path : '/login/{username}/{password}',
+    config : {
+        response : {
+            emptyStatusCode : 204,
+        },
+        handler : function(req , res){
+            var user = req.params.username;
+            var pass = req.params.password;
+            myFuction.findLogin(user,pass).then(function(data){
+                res(data);
+            }).catch(function(err){
+                //res(err);
+            });
+        }
+    }
+
+});
+
+server.route({
+    method : 'GET',
+    path : '/login',
     handler : function(req , res){
-        var id = req.params.id;
-        var username = req.params.username;
-        res(users.findById2(id,username));
+        res(myFuction.findall());
     }
 });
 

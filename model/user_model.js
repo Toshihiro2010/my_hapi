@@ -1,16 +1,7 @@
-function Users(id,username,password,name) {
+exports.Users = function (id,user,pass,name,stat) {
     this.id = id;
-    this.username = username;
-    this.password = password;
+    this.username = user;
+    this.password = pass;
     this.name = name;
-    console.log("in to => Users")
-    
+    this.status = stat;
 }
-exports.Users;
-/*
-var id;
-var username;
-var password;
-var name;
-*/
-
