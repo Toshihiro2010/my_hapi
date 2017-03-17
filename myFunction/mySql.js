@@ -45,16 +45,23 @@ exports.findLogin = function(user,pass){
 
     return new Promise(function(resolve,reject){
         //console.log("user => " , user , pass);
-        mysql_conn.query("SELECT * FROM user WHERE username = '" + user + "' AND password = +" + pass  ,function(error , result , fields){
+        mysql_conn.query("SELECT * FROM user WHERE username = '" + user + "' AND password = ?",(pass)  ,function(error , result , fields){
 
             if(error){
                 console.error('error connect : ' + error.stack);
                 //return 404;
                 reject({errorCode : 404});
             }
-            //console.log("result ==> " , result);
+            console.log("result ==> " , result);
+            console.log("result.length ==> " , result.length);
+
+            if(result.length == 0 ){
+                resolve("");
+            }else{
+                resolve(result);
+            }
             //return result;
-            resolve(result);
+            
         });
     });
 

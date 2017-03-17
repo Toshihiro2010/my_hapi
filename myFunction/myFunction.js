@@ -27,7 +27,7 @@ exports.findLogin = function (username,password) {
     console.log("end findLogin");
     return user;*/
     return new Promise(function(resolve, reject){
-        console.log("password =>" , password);
+        
         mySql.findLogin(username,password).then(function(data){
             console.log(data);
             if(data == []){
